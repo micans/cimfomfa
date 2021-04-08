@@ -1,0 +1,14 @@
+
+
+-  have window mode in hashfile:
+      keep a constant number of entries in the hash, removing the older
+      entries in order. (to stress-test hashes, in conjunction with const)
+
+-  rewrite peach.c
+   make it use a braindead grammar (basic "\n .." etc assumptions)
+   comments ? mm difficult.
+
+/  remove util, install it using libzwik.
+-  clean up hashfile, clean up sorting, enable -r, -u.
+-  make --stats option.
+

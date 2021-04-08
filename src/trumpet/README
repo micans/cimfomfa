@@ -1,0 +1,20 @@
+
+hashfile
+   hashes lines of files and has lots of options to compare
+   different hash functions. See hashfile -h
+
+let
+   evaluates arithmetic expressions involving arithmetic operators
+      ** * + - / // %
+      - (unary)
+   bitwise operators
+      | & ^
+      ~ (unary)
+   boolean operators
+      || && == !=
+      ! (unary)
+   the ternary "a ? b : c" expression, and the standard C math functions.
+
+match
+   tries to find literal pattern in a file stream. Use '-' for stdin.
+

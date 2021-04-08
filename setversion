@@ -1,0 +1,26 @@
+#!/usr/local/bin/bash -e
+
+# $Id: setversion,v 1.1 2004/08/18 16:32:53 flux Exp $
+
+# called in Makefile.am and in bootstrap
+
+set -x
+
+TAG=1.004
+
+VERSION=`date '+%y-%j'`
+MONTHDAY=$(date '+%e')
+MONTH=$(date '+%b')
+YEAR=$(date '+%Y')
+
+#VERSION='03-277'
+#MONTHDAY=4
+echo $VERSION > VERSION
+
+cat > configure.ac <<EOT
+# configure.ac - generated from configure.ac.in by setversion. do not edit
+# configure.ac, but edit the master.
+EOT
+
+sed "s/setversion_VERSION/$VERSION/" configure.ac.in >> configure.ac
+
