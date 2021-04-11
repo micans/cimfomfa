@@ -12,7 +12,7 @@ libtingea_a_SOURCES = alloc.c array.c rand.c equate.c opt.c io.c \
                                                                                 
 library_includedir = $(includedir)/tingea
 
-include_HEADERS = alloc.h array.h rand.h equate.h hash.h heap.h let.h io.h \
+library_include_HEADERS = alloc.h array.h rand.h equate.h hash.h heap.h let.h io.h \
    opt.h err.h ting.h ding.h list.h gralloc.h tok.h \
    compile.h getpagesize.h types.h inttypes.h minmax.h tr.h
 
