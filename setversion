@@ -1,20 +1,19 @@
-#!/usr/local/bin/bash -e
+#!/usr/local/bin/bash
 
 # $Id: setversion,v 1.1 2004/08/18 16:32:53 flux Exp $
-
 # called in Makefile.am and in bootstrap
+
+set -euo pipefail
+
+if [[ -z "$*" ]]; then
+  echo need version - suggest $(date '+%y-%j')
+  false
+fi
+
+VERSION=$1
 
 set -x
 
-TAG=1.004
-
-VERSION=`date '+%y-%j'`
-MONTHDAY=$(date '+%e')
-MONTH=$(date '+%b')
-YEAR=$(date '+%Y')
-
-#VERSION='03-277'
-#MONTHDAY=4
 echo $VERSION > VERSION
 
 cat > configure.ac <<EOT
