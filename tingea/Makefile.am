@@ -2,8 +2,10 @@
 ## $Id: Makefile.am-assimilate,v 1.3 2005-12-07 16:58:40 flux Exp $
                                                                                 
 AM_CPPFLAGS = -I$(top_srcdir)
-                                                                                
-noinst_LIBRARIES = libtingea.a
+
+instdir=$(libdir)
+
+inst_LIBRARIES = libtingea.a
 libtingea_a_SOURCES = alloc.c array.c rand.c equate.c opt.c io.c \
  err.c hash.c heap.c let.c list.c gralloc.c tok.c ting.c ding.c \
  tr.c types.c
