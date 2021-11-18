@@ -34,6 +34,9 @@ int main
    ;  if (argc <= 1)
       exit(1)
 
+   ;  if (argc > 3)     /* terrible, fixme */
+      trmDebug()
+
    ;  raam = trmInit(argv[argc-1])
 
    ;  if (trmParse(raam))

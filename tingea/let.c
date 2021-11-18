@@ -17,6 +17,7 @@
 /*
  * TODO
  *    catch integer overflow.
+ *    lots of ival / fval joint updates/dependencies. May need to check them all.
  *    consider unsigned type. Perhaps implement signed with separate sign.
  *    consider bit operators and unsigned type.
  *    precision.
@@ -950,13 +951,16 @@ mcxstatus flatten
       ;  i32  flags = 0
 
       ;  if (op->toktype == TOKEN_UNIOP)
-         {  
+         {
             real frgt = rgt->fval
          ;  num irgt = rgt->ival
 
          ;  switch(op->opid)
             {  case OP_UNI_NOT
-            :  ival = (tn_isint(rgt) && irgt) ? 0 : frgt ? 0 : 1
+            :  ival = (  tn_isint(rgt)
+                      ?  (  irgt ? 0 : 1 )
+                      :  (  frgt ? 0 : 1 )
+                      )
             ;  fval = ival  
             ;  flags |= TN_ISINT
          ;  break
@@ -989,9 +993,9 @@ mcxstatus flatten
 
          ;  if (op->opid & OPTYPE_BIT)
             {  if (!tn_isint(lft))
-               ilft = lft->fval        /* fixme: why the reassign? */
+               ilft = lft->fval        /* fixordocme: why the reassign? */
             ;  if (!tn_isint(rgt))
-               irgt = rgt->fval        /* fixme: why the reassign? */
+               irgt = rgt->fval        /* fixordocme: why the reassign? */
             ;  if (!tn_isint(rgt) || !tn_isint(lft))
                mcxErr
                (  "let"
@@ -1058,56 +1062,44 @@ mcxstatus flatten
             ;  break
 
             ;  case OP_CMP_LT
-            :  ival =   tn_isint(lft) && tn_isint(rgt) && (ilft < irgt)
-                        ?  1
-                        :  flft < frgt
-                           ?  1
-                           :  0
+            :  ival =   tn_isint(lft) && tn_isint(rgt)
+                      ? ( ilft < irgt ? 1 : 0 )
+                      : ( flft < frgt ? 1 : 0 )
             ;  flags |= TN_ISINT
             ;  break
 
             ;  case OP_CMP_LQ
-            :  ival =   tn_isint(lft) && tn_isint(rgt) && (ilft <= irgt)
-                        ?  1
-                        :  flft <= frgt
-                           ?  1
-                           :  0
+            :  ival =   tn_isint(lft) && tn_isint(rgt)
+                      ? ( ilft <= irgt ? 1 : 0 )
+                      : ( flft <= frgt ? 1 : 0 )
             ;  flags |= TN_ISINT
             ;  break
 
             ;  case OP_CMP_GQ
-            :  ival =   tn_isint(lft) && tn_isint(rgt) && (ilft >= irgt)
-                        ?  1
-                        :  flft >= frgt
-                           ?  1
-                           :  0
+            :  ival =   tn_isint(lft) && tn_isint(rgt)
+                      ? ( ilft >= irgt ? 1 : 0 )
+                      : ( flft >= frgt ? 1 : 0 )
             ;  flags |= TN_ISINT
             ;  break
 
             ;  case OP_CMP_GT
-            :  ival =   tn_isint(lft) && tn_isint(rgt) && (ilft > irgt)
-                        ?  1
-                        :  flft > frgt
-                           ?  1
-                           :  0
+            :  ival =   tn_isint(lft) && tn_isint(rgt)
+                      ? ( ilft > irgt ? 1 : 0 )
+                      : ( flft > frgt ? 1 : 0 )
             ;  flags |= TN_ISINT
             ;  break
 
             ;  case OP_CMP_EQ
-            :  ival =   tn_isint(lft) && tn_isint(rgt) && (ilft == irgt)
-                        ?  1
-                        :  flft == frgt
-                           ?  1
-                           :  0
+            :  ival =   tn_isint(lft) && tn_isint(rgt)
+                      ? ( ilft == irgt ? 1 : 0 )
+                      : ( flft == frgt ? 1 : 0 )
             ;  flags |= TN_ISINT
             ;  break
 
             ;  case OP_CMP_NE
-            :  ival =   tn_isint(lft) && tn_isint(rgt) && (ilft != irgt)
-                        ?  1
-                        :  flft != frgt
-                           ?  1
-                           :  0
+            :  ival =   tn_isint(lft) && tn_isint(rgt)
+                      ? ( ilft != irgt ? 1 : 0 )
+                      : ( flft != frgt ? 1 : 0 )
             ;  flags |= TN_ISINT
             ;  break
 
@@ -1331,12 +1323,17 @@ tn* funcx
       ;  return NULL
    ;  }
       else
-      {  if (!(new = tnNewToken(fn, TOKEN_CONST, fval, ival)))
+      {  if (flags & TN_ISINT)    /* fixme. recent addition. document/design fval/ival coupling */
+         fval = ival
+      ;  else
+         ival = 0
+      ;  if (!(new = tnNewToken(fn, TOKEN_CONST, fval, ival)))
          return NULL
       ;  new->flags = flags
    ;  }
 
-      return new
+      if (debug_g) dump(new, 1, "funcx")
+   ;  return new
 ;  }
 
 
