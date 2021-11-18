@@ -61,5 +61,6 @@ AC_OUTPUT([
   tingea/Makefile
   src/Makefile
   src/trumpet/Makefile
+  shed/Makefile
 ])
 

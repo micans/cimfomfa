@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+mkdir -p slate/build
+cd slate/build
+
+../../configure --prefix=$HOME/local --enable-maintainer-mode
+
+make
+
