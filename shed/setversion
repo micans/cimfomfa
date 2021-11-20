@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 # $Id: setversion,v 1.1 2004/08/18 16:32:53 flux Exp $
 # called in Makefile.am and in bootstrap
