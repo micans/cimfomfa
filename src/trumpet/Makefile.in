@@ -86,13 +86,14 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = cff_hashfile$(EXEEXT) cff_let$(EXEEXT)
+bin_PROGRAMS =
 noinst_PROGRAMS = cff_match$(EXEEXT) cff_pagesize$(EXEEXT) \
 	cff_reap$(EXEEXT) cff_read$(EXEEXT) cff_tst$(EXEEXT) \
 	cff_ttwhy$(EXEEXT) cff_link$(EXEEXT) cff_sow$(EXEEXT) \
 	cff_optoid$(EXEEXT) cff_tring$(EXEEXT) cff_rand$(EXEEXT) \
 	cff_bitpat$(EXEEXT) cff_edit$(EXEEXT) \
-	cff_unit_ceilfloor$(EXEEXT)
+	cff_unit_ceilfloor$(EXEEXT) cff_hashfile$(EXEEXT) \
+	cff_let$(EXEEXT)
 subdir = src/trumpet
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac

@@ -4,8 +4,8 @@
 AM_CPPFLAGS = -I$(top_srcdir) -I..
 
 ## make sure these do _not_ get build or installed by default
-bin_PROGRAMS   =  cff_hashfile cff_let
-noinst_PROGRAMS=  cff_match cff_pagesize cff_reap cff_read  cff_tst  cff_ttwhy  cff_link  cff_sow  cff_optoid  cff_tring  cff_rand  cff_bitpat  cff_edit  cff_unit_ceilfloor
+bin_PROGRAMS   =
+noinst_PROGRAMS=  cff_match cff_pagesize cff_reap cff_read  cff_tst  cff_ttwhy  cff_link  cff_sow  cff_optoid  cff_tring  cff_rand  cff_bitpat  cff_edit  cff_unit_ceilfloor cff_hashfile cff_let
 
 
 cff_ttwhy_SOURCES  =  cff_ttwhy.c
