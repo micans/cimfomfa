@@ -50,7 +50,7 @@ struct mcxGrim
 }  ;
 
 
-grim_buf* grim_buf_new
+static grim_buf* grim_buf_new
 (  dim      sz_unit
 ,  dim      n_units
 )
@@ -125,7 +125,7 @@ dim mcxGrimMemSize
 ;  }
 
 
-mcxbool mcx_grim_extend
+static mcxbool mcx_grim_extend
 (  mcxGrim*  src
 )
    {  grim_buf* prevbuf = src->buf->prev

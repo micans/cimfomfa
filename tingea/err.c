@@ -30,7 +30,7 @@ static FILE*   mcx_fptell  =  NULL;
 mcxbits mcxLogLevel = 0;
 
 
-void  mcx_err_f
+static void  mcx_err_f
 (  FILE*       fp
 ,  const char  *caller
 ,  const char  *fmt

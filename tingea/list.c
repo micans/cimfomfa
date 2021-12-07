@@ -63,7 +63,7 @@ typedef struct lsptr
 #define mcx_list_find(lk) ((lsptr*)((void*)((char*) lk - sizeof(lsptr))))->ls
 
 
-void mcx_link_init
+static void mcx_link_init
 (  mcxLink* lk
 ,  void* val
 )
@@ -73,7 +73,7 @@ void mcx_link_init
 ;  }
 
 
-mcxLink* mcx_list_shift
+static mcxLink* mcx_list_shift
 (  mcx_list*   ls
 ,  void*       val
 )

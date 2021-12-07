@@ -15,7 +15,7 @@
 #include "tingea/err.h"
 
 
-void report_xf
+static void report_xf
 (  mcxIO* xf
 )
    {  mcxTell

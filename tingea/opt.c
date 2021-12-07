@@ -79,7 +79,7 @@ void mcxOptHashFree
 ;  }
 
 
-void* mcxOptInit
+static void* mcxOptInit
 (  void* opt
 )
    {  mcxOption* option = opt
@@ -98,7 +98,7 @@ mcxOptAnchor* mcxOptFind
 ;  }
 
 
-mcxOption* mcxOptParse__
+static mcxOption* mcxOptParse__
 (  mcxHash*       opthash
 ,  char**         argv
 ,  int            argc
@@ -483,7 +483,7 @@ mcxbool mcxOptCheckBounds
 ;  }
 
 
-int mcxOptAnchorCmpId
+static int mcxOptAnchorCmpId
 (  const void *a1
 ,  const void *a2
 )
@@ -494,7 +494,7 @@ int mcxOptAnchorCmpId
 ;  }
 
 
-int mcxOptAnchorCmpTag
+static int mcxOptAnchorCmpTag
 (  const void *a1
 ,  const void *a2
 )
@@ -526,7 +526,7 @@ void mcxOptAnchorSortById
 ;  }
 
 
-void parse_descr
+static void parse_descr
 (  const char* field
 ,  const char** descrp
 ,  const char** markp
@@ -867,7 +867,7 @@ int mcxDispatch
             ,  hk->n_at_least == hk->n_at_most ? "exactly" : "at least"
             ,  hk->n_at_least
             )
-      ;  if (hk->n_at_most > hk->n_at_most)
+      ;  if (hk->n_at_most > hk->n_at_least)
          mcxTingPrintAfter(t, " and at most %d", hk->n_at_most)
 
       ;  if (hk->n_at_most >= 0 && a + hk->n_at_most < argc)

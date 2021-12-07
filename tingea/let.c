@@ -291,21 +291,21 @@ typedef struct opHook
 }  opHook   ;
 
 
-double sign
+static double sign
 (double f
 )
    {  return f > 0 ? 1.0 : f < 0 ? -1.0 : 0.0
 ;  }
 
 
-double letround
+static double letround
 (double f
 )
    { return f > 0 ? floor(f+0.5) : ceil(f-0.5)
 ;  }
 
 
-double letlog2
+static double letlog2
 (double f) { return f > 0 ? log(f) / log(2.0) : 0.0 ;  }
 
 
@@ -320,7 +320,7 @@ typedef struct fun1Hook
 #define  FUN_INTRESULT   2
 #define  FUN_OVERLOADED  4
 
-double show_bits(double a) {
+static double show_bits(double a) {
       return a;
 }
 
@@ -348,10 +348,10 @@ static fun1Hook fun1HookDir[] =
 }  ;
 
 
-double max ( double a, double b ) { return a > b ? a  : b ; }
-double min ( double a, double b ) { return a < b ? a  : b ; }
-num maxl  ( num a, num b ) { return a > b ? a  : b ; }
-num minl  ( num a, num b ) { return a < b ? a  : b ; }
+static double max ( double a, double b ) { return a > b ? a  : b ; }
+static double min ( double a, double b ) { return a < b ? a  : b ; }
+static num maxl  ( num a, num b ) { return a > b ? a  : b ; }
+static num minl  ( num a, num b ) { return a < b ? a  : b ; }
 
 
 typedef struct fun2Hook
@@ -453,16 +453,16 @@ mcxbool trmIsReal
 ;  }
 
 
-mcxstatus getexpression
+static mcxstatus getexpression
 (  telRaam *raam
 )  ;
 
-mcxstatus getatom
+static mcxstatus getatom
 (  telRaam* raam
 )  ;
 
 
-void dump
+static void dump
 (  tn* node
 ,  i32  times
 ,  const char* msg
@@ -477,7 +477,7 @@ void trmDump
 ;  }
 
 
-tn* tnNewToken
+static tn* tnNewToken
 (  const char* token 
 ,  i32         toktype
 ,  real        fval
@@ -511,7 +511,7 @@ tn* tnNewToken
 ;  }
 
 
-tn* tnDup
+static tn* tnDup
 (  tn*   this
 ,  const char* str
 )
@@ -534,7 +534,7 @@ tn* tnDup
 ;  }
 
 
-mcxstatus tnFree
+static mcxstatus tnFree
 (  tn*   lft
 ,  tn*   rgt
 )
@@ -564,7 +564,7 @@ mcxstatus tnFree
 ;  }
 
 
-void tnLink2
+static void tnLink2
 (  tn*   one
 ,  tn*   two
 )
@@ -575,7 +575,7 @@ void tnLink2
 ;  }
 
 
-void tnLink3
+static void tnLink3
 (  tn*   one
 ,  tn*   two
 ,  tn*   three
@@ -590,7 +590,7 @@ void tnLink3
 ;  }
 
 
-mcxstatus tnPushToken
+static mcxstatus tnPushToken
 (  telRaam* raam
 )
    {  i32  toktype = raam->toktype
@@ -634,7 +634,7 @@ mcxstatus tnPushToken
 ;  }
 
 
-mcxstatus tnPushThis
+static mcxstatus tnPushThis
 (  telRaam* raam
 ,  const char* token 
 ,  i32       toktype
@@ -698,14 +698,14 @@ mcxstatus trmExit
 ;  }
 
 
-void untoken
+static void untoken
 (  telRaam* raam
 )
    {  raam->buffered = TRUE
 ;  }
 
 
-void dump
+static void dump
 (  tn* node
 ,  i32  times
 ,  const char* msg
@@ -745,7 +745,7 @@ void dump
    }
 
 
-int getatoken
+static int getatoken
 (  telRaam* raam
 ,  i32    mode
 )
@@ -837,7 +837,7 @@ int getatoken
 ;  }
 
 
-i32  gettoken
+static i32  gettoken
 (  telRaam* raam
 ,  i32  mode
 )
@@ -850,7 +850,7 @@ i32  gettoken
 ;  }
 
 
-tn* findop
+static tn* findop
 (  tn* end
 )
    {  tn* node = end->prev, *max = NULL
@@ -872,7 +872,7 @@ tn* findop
 ;  }
 
 
-tn* finduser
+static tn* finduser
 (  tn* start
 )
    {  tn* node = start->next
@@ -886,7 +886,7 @@ tn* finduser
 ;  }
 
 
-mcxstatus tnUser
+static mcxstatus tnUser
 (  tn*   usr
 )
    {  mcxenum stat = user_eval_g(usr->token->str, &usr->ival, &usr->fval)
@@ -914,7 +914,7 @@ mcxstatus tnUser
  *    Leaves received start and corresponding end alone.
 */
 
-mcxstatus flatten
+static mcxstatus flatten
 (  tn* start
 ,  tn* end
 )
@@ -1195,7 +1195,7 @@ mcxstatus flatten
 ;  }
 
 
-fun1Hook* getfun1id
+static fun1Hook* getfun1id
 (  tn*   start
 )
    {  fun1Hook *fh = fun1HookDir+0
@@ -1205,7 +1205,7 @@ fun1Hook* getfun1id
 ;  }
 
 
-fun2Hook* getfun2id
+static fun2Hook* getfun2id
 (  tn*   start
 )
    {  fun2Hook *fh = fun2HookDir+0
@@ -1215,7 +1215,7 @@ fun2Hook* getfun2id
 ;  }
 
 
-tn* funcx
+static tn* funcx
 (  tn* start
 ,  tn* end
 )
@@ -1337,7 +1337,7 @@ tn* funcx
 ;  }
 
 
-tn* match
+static tn* match
 (  tn*   start
 )
    {  int depth = 1
@@ -1366,7 +1366,7 @@ tn* match
  *    must leave received start and corresponding end alone
 */
 
-mcxstatus compute
+static mcxstatus compute
 (  tn*   start
 )
    {  tn* ptr, *new, *end
@@ -1528,7 +1528,7 @@ mcxstatus compute
 ;  }
 
 
-mcxstatus getatom
+static mcxstatus getatom
 (  telRaam* raam
 )
    {  i32  toktype = gettoken(raam, EXPECT_ATOM)
@@ -1612,7 +1612,7 @@ mcxstatus getatom
 ;  }
 
 
-mcxstatus getexpression
+static mcxstatus getexpression
 (  telRaam* raam
 )
    {  i32  toktype
@@ -1762,7 +1762,7 @@ int trmEval
 
 
 
-int trmStack
+static int trmStack
 (  telRaam* raam
 )
    {  tn* result

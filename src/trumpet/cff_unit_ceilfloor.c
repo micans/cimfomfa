@@ -25,7 +25,7 @@
 #include <unistd.h>
 
 
-int cmp_long (const void* a, const void* b)
+static int cmp_long (const void* a, const void* b)
    {  long au = *((long*)a)
    ;  long bu = *((long*)b)
    ;  return au < bu ? -1 : au > bu ? 1 : 0
@@ -34,8 +34,7 @@ int cmp_long (const void* a, const void* b)
 static const char* me = "unit_ceilfloor";
 
 
-long 
-binarySearchCeil2(long a[], long n, long x)
+static long binarySearchCeil2(long a[], long n, long x)
 {
     long lo = 0, hi = n;
 
@@ -50,7 +49,7 @@ binarySearchCeil2(long a[], long n, long x)
     return hi;
 }
 
-long binarySearchCeil(long a[],long n,long ele)
+static long binarySearchCeil(long a[],long n,long ele)
 {
   long lower=0;
   long upper=n-1;
@@ -78,7 +77,7 @@ long binarySearchCeil(long a[],long n,long ele)
 }
 
 
-int mymain
+static int mymain
 (  int   argc
 ,  char* argv[]
 )

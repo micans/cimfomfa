@@ -75,7 +75,7 @@ static void buffer_spout
 ;  }
 
 
-int begets_stdio
+static int begets_stdio
 (  const char* name
 ,  const char* mode
 )

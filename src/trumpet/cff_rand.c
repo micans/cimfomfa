@@ -27,7 +27,7 @@
 ulong N = 1 << 20;
 
 
-double mcxNormalSample2
+static double mcxNormalSample2
 (  void
 )
    {  return mcxNormalSample(3.0, 1.0)

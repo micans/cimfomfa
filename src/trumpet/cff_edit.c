@@ -30,7 +30,7 @@ typedef struct
 }  mcxLines    ;
 
 
-mcxstatus mcxIOreadLines
+static mcxstatus mcxIOreadLines
 (  mcxLines*   ln
 ,  mcxIO*      xf
 ,  mcxOnFail   ON_FAIL

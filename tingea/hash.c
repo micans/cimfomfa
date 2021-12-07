@@ -104,7 +104,7 @@ struct mcxHashWalk
 }  ;
 
 
-void* mcx_bucket_init
+static void* mcx_bucket_init
 (  void*  buck
 )
    {  ((mcx_bucket*) buck)->base = NULL
@@ -820,18 +820,28 @@ u32 mcxBJhash
       c += len
    ;  switch(l)         /* all the case statements fall through */
       {
-         case 11: c+= k[10]<<24
-      ;  case 10: c+= k[9]<<16
-      ;  case 9 : c+= k[8]<<8
+         case 11: c+= k[10]<<24 ;
+         // fall through
+         case 10: c+= k[9]<<16  ;
+         // fall through
+         case 9 : c+= k[8]<<8   ;
+         // fall through
                         /* the first byte of c is reserved for the length */
-      ;  case 8 : b+= k[7]<<24
-      ;  case 7 : b+= k[6]<<16
-      ;  case 6 : b+= k[5]<<8
-      ;  case 5 : b+= k[4]
-      ;  case 4 : a+= k[3]<<24
-      ;  case 3 : a+= k[2]<<16
-      ;  case 2 : a+= k[1]<<8
-      ;  case 1 : a+= k[0]
+         case 8 : b+= k[7]<<24  ;
+         // fall through
+         case 7 : b+= k[6]<<16  ;
+         // fall through
+         case 6 : b+= k[5]<<8   ;
+         // fall through
+         case 5 : b+= k[4]      ;
+         // fall through
+         case 4 : a+= k[3]<<24  ;
+         // fall through
+         case 3 : a+= k[2]<<16  ;
+         // fall through
+         case 2 : a+= k[1]<<8   ;
+         // fall through
+         case 1 : a+= k[0]      ;
                         /* case 0: nothing left to add */
    ;  }
 
@@ -860,12 +870,19 @@ u32   mcxCThash
                   do
                   {        /* All fall through */
                              ctHASH4
+                     // fall through
                      case 7: ctHASH4
+                     // fall through
                      case 6: ctHASH4
+                     // fall through
                      case 5: ctHASH4
+                     // fall through
                      case 4: ctHASH4
+                     // fall through
                      case 3: ctHASH4
+                     // fall through
                      case 2: ctHASH4
+                     // fall through
                      case 1: ctHASH4
                   }
                   while (--loop)                  /* unsignedcmpok */

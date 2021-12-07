@@ -30,7 +30,7 @@ const char* syntax = "reap -fasta-sl <fname> -ssaha <fname> [options]";
 
 unsigned basemap[256] = { 0 };
 
-void basemap_init ( void )
+static void basemap_init ( void )
    {  dim i
    ;  for (i=0;i<256;i++)
       basemap[i] = 5
@@ -93,7 +93,7 @@ typedef struct
 }  hcell       ;
 
 
-int cmp_track_position(const void* k1, const void* k2)
+static int cmp_track_position(const void* k1, const void* k2)
    {  const hcell* h1 = k1, *h2 = k2
    ;  if (!h1->pos)
       return h2->pos ? 1 : (h1 > h2)
@@ -145,7 +145,7 @@ static dim count_max = 0;
 
 #define WIDTH 3
 
-void harray_new(harray* h)
+static void harray_new(harray* h)
    {  h->hmask    =  (1<<WIDTH) - 1
    ;  h->cells    =  mcxAlloc(sizeof h->cells[0] * (h->hmask+1), EXIT_ON_FAIL)
    ;  h->n_used   =  0
@@ -153,7 +153,7 @@ void harray_new(harray* h)
 ;  }
 
 
-void harray_double(harray* ha, dim n_new,  const char* name)
+static void harray_double(harray* ha, dim n_new,  const char* name)
    {  unsigned newmask = 2 * ha->hmask + 1
    ;  hcell* newcells
    ;  dim j
@@ -199,7 +199,7 @@ typedef struct
 }  hitfilter   ;
 
 
-int cmp_tracks_name(const void* n1, const void* n2)
+static int cmp_tracks_name(const void* n1, const void* n2)
    {  const chrtrack* t1 = n1, *t2 = n2
    ;  const mcxTing*  s1 = t1->name, *s2 = t2->name
    ;  if (s1->len != s2->len)
@@ -209,7 +209,7 @@ int cmp_tracks_name(const void* n1, const void* n2)
 
 
 
-dim reduce_single_query(chrhit* hits, dim n_hit, chrtrack* track, int debug)
+static dim reduce_single_query(chrhit* hits, dim n_hit, chrtrack* track, int debug)
    {  dim best_length   =  0
    ;  float best_identity =  0.0
    ;  chrhit*  dst      =  hits
@@ -242,7 +242,7 @@ if (debug) fprintf(stderr, "------> %d %f\n", (int) best_length, (float) best_id
 ;  }
 
 
-void accumulate_tracks(hitfilter* flt, int divide)
+static void accumulate_tracks(hitfilter* flt, int divide)
    {  chrhit* hits = flt->hits
    ;  dim n_hit = flt->n_hit
    ;  chrtrack* tracks = flt->tracks
@@ -382,7 +382,7 @@ mcxOptAnchor options[] =
 }  ;
 
 
-void read_fasta(mcxIO* xffasta, mcxHash* seqattr)
+static void read_fasta(mcxIO* xffasta, mcxHash* seqattr)
    {  int expect_id  =  1
    ;  readattr*  attr=  NULL
    ;  mcxTing  *line =  mcxTingEmpty(NULL, 160)
@@ -431,7 +431,7 @@ void read_fasta(mcxIO* xffasta, mcxHash* seqattr)
 ;  }
 
 
-void read_ssaha(mcxIO* xfssaha, mcxHash* seqattr, readpar par, hitfilter* flt)
+static void read_ssaha(mcxIO* xfssaha, mcxHash* seqattr, readpar par, hitfilter* flt)
    {  mcxTing  *line    =  mcxTingEmpty(NULL, 160)
    ;  mcxTing  *idquery =  mcxTingEmpty(NULL, 160)
    ;  mcxTing  *idtrack =  mcxTingEmpty(NULL, 160)
@@ -624,7 +624,7 @@ if(0)fprintf(stderr, "%d %s %s\n", (int) n_hit, query_previous, ((mcxTing*) (kvq
 ;  }
 
 
-void destroy_and_write_tracks(hitfilter* flt, mcxIO* xfout)
+static void destroy_and_write_tracks(hitfilter* flt, mcxIO* xfout)
    {  dim i, bases_used = 0, reads_ignore = 0, reads_mapped = 0
    ;  for (i=0;i<flt->n_track;i++)
       {  dim u =  flt->tracks[i].incident.n_used

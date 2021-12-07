@@ -12,7 +12,7 @@
 
 #include "tingea/rand.h"
 
-void print_bits
+static void print_bits
 (  unsigned u
 )
    {  char bits[32]
