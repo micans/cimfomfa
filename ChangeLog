@@ -1,0 +1,12 @@
+
+
+Fri Dec 10 2021
+
+   *  cimfomfa-21-341 released
+
+	*  Fixed bug in let.c; it would think that 'abs(2) == abs(1)' is true.  The
+		cause was a combination of two things: failure to maintain float/integer
+		correspondence by abs and other functions, and a wrong ternary cascade that
+		would check float (in)equality even if the integer (in)equality test was
+		already conclusive.
+

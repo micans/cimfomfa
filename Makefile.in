@@ -771,9 +771,6 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
-VERSION: ChangeLog NEWS
-	./setversion
-
 configure.ac: configure.ac.in VERSION
 	shed/setversion
 

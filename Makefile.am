@@ -4,9 +4,6 @@
 ## stuff in shtest should get distributed but not installed
 SUBDIRS = . tingea src shed
 
-VERSION: ChangeLog NEWS
-	./setversion
-
 VERSION = @VERSION@
 
 configure.ac: configure.ac.in VERSION
