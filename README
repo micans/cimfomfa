@@ -1,0 +1,25 @@
+
+This library supports both MCL, a cluster algorithm for graphs, and zoem, a
+macro/DSL language. It supplies abstractions for memory management, I/O,
+associative arrays, strings, heaps, and a few other things. The string
+functionality has had heavy testing as part of zoem, the hash functionality has
+had heavy testing both under mcl and zoem. The array and (grid) allocation
+parts are useful. The IO library is used quite a bit by mcl and does what it
+needs to do. Yet I consider it at a dead end currently.
+
+Some more notes:
+
+Both understandably and regrettably I chose long ago to make the string type
+C-string-compatible, hence nul bytes may not be part of a string (even though
+they are counted). At some point I hope to rectify this, perhaps
+unrealistically.
+
+There are no unit tests. There should be unit tests.
+
+Some testing programs are part of the library, found in src/trumpet.
+
+There is partial support for buffering and parsing/lookahead in the IO code,
+but with some caveats and lacking functionality. IO is hard in all its different
+modalities.
+
+
