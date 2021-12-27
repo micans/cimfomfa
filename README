@@ -19,7 +19,7 @@ There are no unit tests. There should be unit tests.
 Some testing programs are part of the library, found in src/trumpet.
 
 There is partial support for buffering and parsing/lookahead in the IO code,
-but with some caveats and lacking functionality. IO is hard in all its different
-modalities.
+but with some caveats, patchy functionality and lacking a coherent design. IO
+is hard in all its different modalities.
 
 

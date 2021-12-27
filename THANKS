@@ -3,5 +3,7 @@ Thanks to:
 
    Joost van Baal author of the mcl, zoem, and cimfomfa build environments
    for autotooling and packaging mcl and zoem and setting up and maintaining the CVS
-   trees back in the day, followed by help and guidance over all subsequent years.
+   trees back in the day, followed by help and guidance over all subsequent years,
+   as well as introducing mcl and zoem into Debian, maintaning and keeping an
+   eye on them.
 
