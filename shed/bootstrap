@@ -26,7 +26,7 @@ set -x
 
 if test ! -f VERSION
 then
-    ./setversion
+    shed/setversion
 fi
 
 aclocal \

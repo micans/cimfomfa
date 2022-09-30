@@ -6,9 +6,9 @@ mkdir -p slate/build
 cd slate/build
 
 # ../../configure --prefix=$HOME/local --enable-maintainer-mode
-../../configure CFLAGS="-Wall -Wextra -std=gnu99 -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition -fno-common -Wno-int-in-bool-context -Wno-unused-but-set-variable -Wno-unused-function -Wno-enum-compare -Wno-unused-parameter -Wno-unused-variable -Wno-sign-compare -Wno-misleading-indentation" LDFLAGS=-L$HOME/local/lib --prefix=$HOME/local --enable-maintainer-mode
+../../configure CFLAGS="-Wall -Wextra -std=gnu99 -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition -fno-common -Wno-int-in-bool-context -Wno-unused-but-set-variable -Wno-unused-function -Wno-enum-compare -Wno-unused-parameter -Wno-unused-variable -Wno-sign-compare -Wno-misleading-indentation" LDFLAGS=-L$HOME/local/lib --prefix=$HOME/local --enable-maintainer-mode --disable-static --enable-shared
 
-make clean
+#make clean
 
 make 2>&1 | tee make.log
 

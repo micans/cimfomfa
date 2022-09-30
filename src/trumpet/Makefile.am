@@ -28,5 +28,6 @@ cff_pagesize_SOURCES  =  cff_pagesize.c
 cff_let_LDFLAGS = -lm
 cff_hashfile_LDFLAGS = -lm
 
-LDADD = ../../tingea/libtingea.a
+#LDADD = ../../tingea/libtingea.a
+LDADD = ../../tingea/libtingea.la
 

@@ -5,11 +5,13 @@ AM_CPPFLAGS = -I$(top_srcdir)
 
 instdir=$(libdir)
 
-inst_LIBRARIES = libtingea.a
-libtingea_a_SOURCES = alloc.c array.c rand.c equate.c opt.c io.c \
+#  inst_LIBRARIES = libtingea.a
+inst_LTLIBRARIES = libtingea.la
+libtingea_la_SOURCES = alloc.c array.c rand.c equate.c opt.c io.c \
  err.c hash.c heap.c let.c list.c gralloc.c tok.c ting.c ding.c \
  tr.c types.c
-                                                                                
+# libtingea_la_SOURCES = $(libtingea_a_SOURCES)
+
 library_includedir = $(includedir)/tingea
 
 library_include_HEADERS = alloc.h array.h rand.h equate.h hash.h heap.h let.h io.h \

@@ -1,5 +1,11 @@
 
 
+caracal,/git/micans/cimfomfa (main) (c cff) file compile
+compile: symbolic link to /usr/share/automake-1.16/compile
+
+Is this indicative of weirdness?
+
+
 -  have window mode in hashfile:
       keep a constant number of entries in the hash, removing the older
       entries in order. (to stress-test hashes, in conjunction with const)
